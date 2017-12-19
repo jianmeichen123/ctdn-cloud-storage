@@ -1,6 +1,8 @@
 package com.gi.ctdn.cloud.storage.vo;
 
 import com.gi.ctdn.cloud.storage.param.FileParam;
+import com.gi.ctdn.cloud.storage.pojo.UploadFile;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,35 +16,12 @@ import java.util.List;
  * Company: 星河互联
  * Group:   创投大脑
  */
+@Data
 public class FileUploadRestult implements Serializable{
 
-    private Boolean isSuccess;
+    private Boolean isSuccess =true;
 
-    private String msg ;
+    private String msg = "success";
 
-    private List<FileParam> fileParams;
-
-    public Boolean getSuccess() {
-        return isSuccess;
-    }
-
-    public void setSuccess(Boolean success) {
-        isSuccess = success;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public List<FileParam> getFileParams() {
-        return fileParams;
-    }
-
-    public void setFileParams(List<FileParam> fileParams) {
-        this.fileParams = fileParams;
-    }
+    private List<UploadFile> uploadFiles;
 }
