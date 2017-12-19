@@ -18,6 +18,9 @@ public class UploadInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         Cookie[] cookies = httpServletRequest.getCookies();
+        if (cookies==null||cookies.length==0){
+            return false;
+        }
         String uid = null;
         String s = null;
         for(Cookie cookie:cookies){
@@ -31,7 +34,7 @@ public class UploadInterceptor implements HandlerInterceptor {
         if (uid==null||s==null){
             return false;
         }
-        String key = "ctdn:"+s+":code:"+uid;
+        String key = "ctdn:"+s+":"+uid;
         String code = stringRedisTemplate.boundValueOps(key).get();
         if (code==null){
             return false;

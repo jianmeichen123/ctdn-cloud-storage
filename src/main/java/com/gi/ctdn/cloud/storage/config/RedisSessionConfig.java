@@ -8,14 +8,4 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @Configuration
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 3600*24*7)
 public class RedisSessionConfig {
-
-    @Bean
-    public JedisConnectionFactory connectionFactory()
-    {
-        JedisConnectionFactory connection = new JedisConnectionFactory();
-        connection.setPort(6379);
-        connection.setHostName("127.0.0.1");
-        connection.setDatabase(0);
-        return connection;
-    }
 }

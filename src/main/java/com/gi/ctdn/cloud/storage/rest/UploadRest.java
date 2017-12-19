@@ -42,10 +42,10 @@ public class UploadRest {
     @RequestMapping(value = "/images")
     public FileUploadRestult images(HttpServletRequest request)  {
         FileUploadRestult uploadRestult = new FileUploadRestult();
+        String code = (String) request.getAttribute("user");
         List<UploadFile> UploadFiles = new ArrayList<>();
         uploadRestult.setUploadFiles(UploadFiles);
         String ssiod = request.getSession().toString();
-        String userCode = "test";
 
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         if (multipartResolver.isMultipart(request)) {
@@ -64,8 +64,8 @@ public class UploadRest {
                         String filekey = String.valueOf(IdGenerator.generateId(AliOSSUtil.class));
                         UploadFile uploadFile = new UploadFile();
                         uploadFile.setFileName(filename);
-                        uploadFile.setUserCode(userCode);
-                        uploadFile.setUserRole("test");
+                        uploadFile.setUserCode(code);
+                        uploadFile.setUserRole("");
                         uploadFile.setUserType("ctdn");
                         uploadFile.setBucketName("ctdn");
                         uploadFile.setFileSuffix("");
