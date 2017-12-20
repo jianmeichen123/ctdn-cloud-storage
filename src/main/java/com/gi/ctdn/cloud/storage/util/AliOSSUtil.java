@@ -14,6 +14,10 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.URL;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -37,10 +41,11 @@ public class AliOSSUtil {
      * @return
      * @throws FileNotFoundException
      */
-    public PutObjectResult upload(InputStream inputStream,String filename) {
+    public Map<String,String> upload(InputStream inputStream, String filename, boolean isurl) {
         if (inputStream == null) {
             return null;
         }
+        Map<String,String> resultMap = new HashMap<>();
         // 创建OSS客户端
         OSSClient ossClient = new OSSClient(OSS_ENDPOINT, OSS_ACCESS_KEY_ID, OSS_ACCESS_KEY_SECRET);
         try {
@@ -53,7 +58,13 @@ public class AliOSSUtil {
             }
             // 上传文件
             PutObjectResult result = ossClient.putObject(new PutObjectRequest(OSS_BUCKET_NAME, filename, inputStream));
-            return result;
+            resultMap.put("etag",result.getETag());
+            if (isurl){
+                Date expiration = new Date(new Date().getTime() + 3600l * 1000 * 24 * 365 * 10);
+                URL url = ossClient.generatePresignedUrl(OSS_BUCKET_NAME, filename, expiration);
+                resultMap.put("url",url.toString());
+            }
+            return resultMap;
 
         } catch (OSSException oe) {
             log.error(oe.getMessage());
@@ -81,4 +92,6 @@ public class AliOSSUtil {
     public void setOSS_BUCKET_NAME(String OSS_BUCKET_NAME) {
         this.OSS_BUCKET_NAME = OSS_BUCKET_NAME;
     }
+
+
 }
