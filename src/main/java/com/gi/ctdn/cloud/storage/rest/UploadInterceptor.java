@@ -34,12 +34,13 @@ public class UploadInterceptor implements HandlerInterceptor {
         if (uid==null||s==null){
             return false;
         }
-        String key = "ctdn:"+s+":"+uid;
+        String key = "ctdn:"+s+":"+uid+":code";
         String code = stringRedisTemplate.boundValueOps(key).get();
         if (code==null){
             return false;
         }
-        httpServletRequest.setAttribute("code",code);
+        httpServletRequest.setAttribute("CODE",code);
+        httpServletRequest.setAttribute("USERTYPE",s);
         return true;
     }
 

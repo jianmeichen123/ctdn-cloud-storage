@@ -16,16 +16,15 @@ public class UploadFile {
     private String userRole;
     private String url;
     @JsonIgnore
-    private String bucketName;
-
+    private String bucketName = "ctdn";
     private long fileLength;
     private String fileName;
     @JsonIgnore
     private String fileUploadName;
     @JsonIgnore
     private String fileSuffix;
-    @JsonIgnore
     private String eTag;
+    @JsonIgnore
     private long createdTime;
     @JsonIgnore
     private long status;

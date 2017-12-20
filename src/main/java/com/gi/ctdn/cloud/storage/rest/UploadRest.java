@@ -32,8 +32,8 @@ public class UploadRest {
         FileUploadRestult uploadRestult = new FileUploadRestult();
         List<UploadFile> UploadFiles = new ArrayList<>();
         uploadRestult.setUploadFiles(UploadFiles);
-        String userCode = "test";
-
+        String code = (String) request.getAttribute("CODE");
+        String userType = (String) request.getAttribute("USERTYPE");
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         if (multipartResolver.isMultipart(request)) {
             //转换成多部分request
@@ -51,18 +51,17 @@ public class UploadRest {
                         String filekey = String.valueOf(UUID.randomUUID().toString().replaceAll("-",""));
                         UploadFile uploadFile = new UploadFile();
                         uploadFile.setFileName(filename);
-                        uploadFile.setUserCode(userCode);
+                        uploadFile.setUserCode(code);
                         uploadFile.setUserRole("test");
-                        uploadFile.setUserType("ctdn");
-                        uploadFile.setBucketName("ctdn");
-                        uploadFile.setFileSuffix("");
-                        uploadFile.setUrl("");
+                        uploadFile.setUserType(userType);
+                        uploadFile.setFileSuffix(filename.substring(filename.lastIndexOf(".") + 1));
+                        uploadFile.setCreatedTime(System.currentTimeMillis());
                         uploadFile.setFileLength(file.getSize());
                         uploadFile.setFileUploadName(filekey);
                         try {
                             Map<String,String> res = aliOSSUtil.upload(file.getInputStream(),filekey,"image".equals(path)?true:false);
                             uploadFile.setETag(res.get("etag"));
-                            uploadFile.setUrl(res.get("url"));
+                            uploadFile.setUrl(res.get("url")!=null?res.get("url"):"");
                             uploadFile.setStatus(0);
                         } catch (IOException e) {
                             uploadFile.setETag("");
@@ -74,7 +73,13 @@ public class UploadRest {
 
             }
             if(UploadFiles.size()>0){
-                uploadFileService.batchAdd(UploadFiles);
+                try{
+
+                    uploadFileService.batchAdd(UploadFiles);
+                } catch (Exception e) {
+                    uploadRestult.setSuccess(false);
+                    uploadRestult.setMsg("服务器繁忙,请稍后！");
+                }
             }
 
         }

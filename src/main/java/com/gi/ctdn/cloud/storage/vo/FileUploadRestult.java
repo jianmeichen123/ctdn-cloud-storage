@@ -19,9 +19,9 @@ import java.util.List;
 @Data
 public class FileUploadRestult implements Serializable{
 
-    private Boolean isSuccess =true;
+    private Boolean success =true;
 
-    private String msg = "success";
+    private String msg = "文件上传成功!请核对您的文件大小和MD5";
 
     private List<UploadFile> uploadFiles;
 }
