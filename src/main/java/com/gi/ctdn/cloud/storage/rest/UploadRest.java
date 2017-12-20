@@ -36,23 +36,18 @@ public class UploadRest {
         String userType = (String) request.getAttribute("USERTYPE");
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         if (multipartResolver.isMultipart(request)) {
-            //转换成多部分request
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-            //取得request中的所有文件名
             Iterator<String> iter = multiRequest.getFileNames();
             while (iter.hasNext()) {
                 MultipartFile file = multiRequest.getFile(iter.next());
                 if (file != null) {
-                    //取得当前上传文件的文件名称
                     String filename = file.getOriginalFilename();
-                    //如果名称不为“”,说明该文件存在，否则说明该文件不存在
                     if (!filename.trim().equals("")) {
-                        //重命名上传后的文件名
                         String filekey = String.valueOf(UUID.randomUUID().toString().replaceAll("-",""));
                         UploadFile uploadFile = new UploadFile();
                         uploadFile.setFileName(filename);
                         uploadFile.setUserCode(code);
-                        uploadFile.setUserRole("test");
+                        uploadFile.setUserRole("");
                         uploadFile.setUserType(userType);
                         uploadFile.setFileSuffix(filename.substring(filename.lastIndexOf(".") + 1));
                         uploadFile.setCreatedTime(System.currentTimeMillis());
