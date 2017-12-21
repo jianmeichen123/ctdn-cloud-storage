@@ -19,7 +19,6 @@ public class UploadFile {
     private String bucketName = "ctdn";
     private long fileLength;
     private String fileName;
-    @JsonIgnore
     private String fileUploadName;
     @JsonIgnore
     private String fileSuffix;
