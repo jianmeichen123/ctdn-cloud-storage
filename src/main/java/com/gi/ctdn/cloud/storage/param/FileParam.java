@@ -1,7 +1,5 @@
 package com.gi.ctdn.cloud.storage.param;
 
-import lombok.Data;
-
 import java.io.Serializable;
 
 

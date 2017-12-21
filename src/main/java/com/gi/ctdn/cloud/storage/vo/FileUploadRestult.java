@@ -1,6 +1,5 @@
 package com.gi.ctdn.cloud.storage.vo;
 
-import com.gi.ctdn.cloud.storage.param.FileParam;
 import com.gi.ctdn.cloud.storage.pojo.UploadFile;
 import lombok.Data;
 

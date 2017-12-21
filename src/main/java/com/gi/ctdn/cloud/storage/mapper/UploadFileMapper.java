@@ -2,7 +2,6 @@ package com.gi.ctdn.cloud.storage.mapper;
 
 import com.gi.ctdn.cloud.storage.pojo.UploadFile;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
