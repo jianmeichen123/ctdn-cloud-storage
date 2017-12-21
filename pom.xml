@@ -8,6 +8,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.3.RELEASE</version>
     </parent>
+    <version>1.1-SNAPSHOT</version>
     <artifactId>ctdn-cloud-storage</artifactId>
     <packaging>jar</packaging>
     <properties>
