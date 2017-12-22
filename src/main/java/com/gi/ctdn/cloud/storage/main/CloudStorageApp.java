@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * Created by vincent on 17-1-9.
  */
-
 @SpringBootApplication()
 @ComponentScan(basePackages={"com.gi.ctdn"})
 @MapperScan("com.gi.ctdn.cloud.storage.mapper")
