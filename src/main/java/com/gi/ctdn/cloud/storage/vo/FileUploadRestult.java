@@ -23,4 +23,12 @@ public class FileUploadRestult implements Serializable{
     private String msg = "文件上传成功!请核对您的文件大小和MD5";
 
     private List<UploadFile> uploadFiles;
+
+    public FileUploadRestult() {
+    }
+
+    public FileUploadRestult(Boolean success, String msg) {
+        this.success = success;
+        this.msg = msg;
+    }
 }
