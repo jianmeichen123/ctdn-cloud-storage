@@ -19,4 +19,5 @@ public class HandlerInterceptorConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(uploadInterceptor()).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
+
 }

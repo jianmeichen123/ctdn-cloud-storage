@@ -78,6 +78,7 @@ public class UploadRest {
             }
 
         }
-        request.removeAttribute("user");
+        request.removeAttribute("CODE");
+        request.removeAttribute("USERTYPE");
         return uploadRestult;
     }}

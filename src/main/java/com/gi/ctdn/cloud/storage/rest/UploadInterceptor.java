@@ -32,6 +32,12 @@ public class UploadInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+//        String adminkey  = httpServletRequest.getHeader("key");
+//        if (adminkey!=null&&adminkey.equals("testjet")){
+//            httpServletRequest.setAttribute("CODE","admin");
+//            httpServletRequest.setAttribute("USERTYPE","admin");
+//            return true;
+//        }
         Cookie[] cookies = httpServletRequest.getCookies();
         if (cookies==null||cookies.length==0){
             //writeLoginMsg(httpServletResponse);
