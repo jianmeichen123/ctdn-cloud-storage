@@ -39,12 +39,12 @@ public class UploadInterceptor implements HandlerInterceptor {
 //            return true;
 //        }
         Cookie[] cookies = httpServletRequest.getCookies();
-        if (cookies==null||cookies.length==0){
-            //writeLoginMsg(httpServletResponse);
-            httpServletRequest.setAttribute("CODE","test");
-            httpServletRequest.setAttribute("USERTYPE","test");
-            return true;
-        }
+//        if (cookies==null||cookies.length==0){
+//            //writeLoginMsg(httpServletResponse);
+//            httpServletRequest.setAttribute("CODE","test");
+//            httpServletRequest.setAttribute("USERTYPE","test");
+//            return true;
+//        }
         String uid = null;
         String s = null;
         for(Cookie cookie:cookies){
