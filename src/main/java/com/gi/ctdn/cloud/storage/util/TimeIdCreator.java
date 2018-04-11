@@ -1,10 +1,11 @@
 package com.gi.ctdn.cloud.storage.util;
 
-import org.apache.commons.lang.StringUtils;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.util.StringUtils;
 
 /**
  * @author kaihu
